@@ -19,7 +19,7 @@ export async function getAllProducts()  {
 };
 //http://localhost:1337/api/products?filters[categories][name][$in]=Fruta
 export async function getProductsByCategory(category)  {
-    const {data} = await axiosClient.post(`/api/products?filters[categories][name][$in]=${category}&populate=*`);
+    const {data} = await axiosClient.get(`/api/products?filters[categories][name][$in]=${category}&populate=*`);
     return data.data;
 };
 
@@ -97,7 +97,6 @@ export function deleteCartItem(id, jwt) {
 }
 //Add a new order into database
 
-
 export function addToOrder(checkoutInfo, jwt) {
     axiosClient.post('/api/orders', checkoutInfo, {
             headers: {
@@ -106,4 +105,24 @@ export function addToOrder(checkoutInfo, jwt) {
             },
         })
 }
-
+//List of the products order form an user
+export async function getProdutsOrder(userId, jwt) {
+    try {
+        const {data}= await axiosClient.get(`/api/orders?filters[userId][$eq]=${userId}&populate[orderItem][populate][product][populate][images]=url*`, {
+            headers: {
+                Authorization:
+                    `Bearer ${jwt}`,
+            },
+        });
+        const productsOrderdList = data.data.map((item)=> ({
+            id: item.id,
+            totalOrder: item.attributes.totalOrder,
+            createdAt: item.attributes.createdAt,
+            paymentId: item.attributes.paymentId,
+            orderItem: item.attributes.orderItem
+        }))
+        return productsOrderdList;
+    }catch (e){
+        console.log('There was an error', e)
+    }
+}

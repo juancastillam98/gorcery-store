@@ -8,12 +8,15 @@ export default async function ProductCategory({params}) {
     const categoriesList = await getCategories();
 
     return (
-        <section>
+        <section className={""}>
             <h2 className={"p-4 bg-primary text-white font-bold text-3xl text-center"}>{categoryName}</h2>
-            <CategoryList categoriesList={categoriesList} selectedCategory={categoryName}/>
-            <div className={"p-5 md:p-10"}>
-                <ProductList productsList={productsList}/>
+            <div className={"max-w-screen-2xl mx-auto"}>
+                <CategoryList categoriesList={categoriesList} selectedCategory={categoryName}/>
+                <div className={"p-5 md:p-10"}>
+                    <ProductList productsList={productsList}/>
+                </div>
             </div>
+
         </section>
     )
 }

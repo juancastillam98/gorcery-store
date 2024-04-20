@@ -61,7 +61,6 @@ export const Header = () => {
     };
 
     const getProductsCart = async ()=> {
-        console.log("llamado")
         try {
             const totalProductsCart=await getCartItems(userLogged.id, jwt);
             setCartListItem(totalProductsCart);
@@ -175,7 +174,7 @@ export const Header = () => {
                             <DropdownMenuLabel>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem>Profile</DropdownMenuItem>
-                            <DropdownMenuItem>My Orders</DropdownMenuItem>
+                            <Link href={"/my-orders"}>My Orders</Link>
                             <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

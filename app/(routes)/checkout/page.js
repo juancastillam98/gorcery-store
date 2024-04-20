@@ -110,10 +110,6 @@ export default  function Checkout() {
                 orderItem: cartListItem
             }
         };
-        console.log("Contenido de checkout info")
-        console.log(checkoutInfo)
-        console.log("Contenido de infouser")
-        console.log(userInfo)
         toast("Pago realizado con éxito")
 
     try {
