@@ -26,7 +26,7 @@ import {
 
 import {CartItemList} from "@/components/custom/CartItemList";
 
-import logo from '/public/logo.webp'
+import logo from '/public/logo.png'
 import {LayoutGrid, Search, ShoppingBag} from 'lucide-react';
 import {toast} from "sonner";
 
@@ -92,7 +92,7 @@ export const Header = () => {
                 <Link href={"/"}>
                     <Image src={logo}
                            alt={"Grocery Store Logo"}
-                           width={150}
+                           width={100}
                            height={100}
                     />
                 </Link>
@@ -174,7 +174,7 @@ export const Header = () => {
                             <DropdownMenuLabel>My Account</DropdownMenuLabel>
                             <DropdownMenuSeparator/>
                             <DropdownMenuItem>Profile</DropdownMenuItem>
-                            <Link href={"/my-orders"}>My Orders</Link>
+                            <Link href={"/my-orders"} className={"text-sm px-2 py-1.5"}>My Orders</Link>
                             <DropdownMenuItem onClick={() => signOut()}>Logout</DropdownMenuItem>
                         </DropdownMenuContent>
                     </DropdownMenu>

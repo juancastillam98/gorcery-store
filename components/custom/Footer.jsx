@@ -1,4 +1,4 @@
-import logo from "../../public/logo.webp";
+import logo from "../../public/logo.png";
 import Image from "next/image";
 export const Footer = () => {
     return (
@@ -9,9 +9,11 @@ export const Footer = () => {
                 <div className="sm:flex sm:items-center sm:justify-between">
                     <a href="https://flowbite.com/"
                        className="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                        <Image src={logo} className="h-32 w-full" alt="Healthy Food Logo"/>
+                        <Image
+                            src={logo}
+                            className="h-auto w-full max-w-60" alt="Healthy Food Logo"/>
                     </a>
-                    <ul className="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
+                    <ul className="flex flex-wrap items-center justify-center mb-6 text-primary font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
                         <li>
                             <a href="#" className="hover:underline me-4 md:me-6">About</a>
                         </li>

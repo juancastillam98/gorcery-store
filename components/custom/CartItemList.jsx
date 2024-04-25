@@ -23,7 +23,7 @@ export const CartItemList = ({cartListItem, deleteItemFromCart}) => {
     return (
         <section>
             <div className="h-[800px] overflow-auto">
-                {cartListItem.map((cartItem, index)=>(
+                {cartListItem?.map((cartItem, index)=>(
                     <div
                         className="flex justify-between items-center p-2 mb-5"
                          key={index}

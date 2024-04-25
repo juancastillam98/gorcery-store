@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation'
 import Link from "next/link";
 import Image from "next/image";
 import {useEffect, useState} from "react";
-import logo from "@/public/logo.webp";
+import logo from "@/public/logo.png";
 import {Button} from "@/components/ui/button";
 import {signInUser} from "@/utils/GlobalAPi";
 import {toast} from "sonner";

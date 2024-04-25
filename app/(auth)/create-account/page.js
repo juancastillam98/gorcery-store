@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 import {registerNewUser} from "@/utils/GlobalAPi";
-import logo from "../../../public/logo.webp"
+import logo from "../../../public/logo.png"
 import {Button} from "@/components/ui/button";
 import {toast} from "sonner";
 
@@ -67,7 +67,7 @@ export default function CreateAccount(){
                         <input type="password" id="confirmPassword"
                                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
                                placeholder="•••••••••" required
-                               onChange={(e) => setPassword(e.target.value)}
+                               onChange={(e) => setConfirmPassword(e.target.value)}
                         />
                     </div>
                     <Button

@@ -5,13 +5,24 @@ import {useProducts} from "@/hooks/useProducs";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
+import {
+    Dialog,
+    DialogContent,
+    DialogDescription,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+} from "@/components/ui/dialog"
+
 import {Button} from "@/components/ui/button";
 import {ArrowBigRight} from "lucide-react";
+import {idGenerator} from "@/utils/functions";
 
 
 export default  function Checkout() {
     const {totalCartItems, setTotalCartItems, cartListItem, setCartListItem, calculoSubtotal, subtotal, totalPrice}=useProducts();
     const router = useRouter()
+    const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
 
 /*    const [username, setUsername]=useState("");
     const [email, setEmail]=useState("");
@@ -110,16 +121,15 @@ export default  function Checkout() {
                 orderItem: cartListItem
             }
         };
-        toast("Pago realizado con éxito")
-
+        console.log(checkoutInfo)
     try {
         addToOrder(checkoutInfo, jwt)
         toast("Pago realizado con éxito")
+        setShowModal(true); // Muestra el modal después de un pago exitoso
+        setTimeout(() => setShowModal(false), 4000); // Oculta el modal después de 4 segundos
     }catch (e) {
         console.log("ha habido un error")
     }
-
-
     }
 
 
@@ -127,8 +137,30 @@ export default  function Checkout() {
     return (
         <section className="">
             <h2 className={"p-3 bg-primary text-xl font-bold text-center text-white"}>Carrito</h2>
+
+            <Dialog open={showModal} onClose={() => setShowModal(false)}>
+                <DialogContent>
+                    <DialogHeader>
+                        <DialogTitle>¡Pago realizado con éxito!</DialogTitle>
+                        <DialogDescription>
+                            Tu pago ha sido procesado correctamente.
+                            <div className="flex justify-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24"
+                                     fill="none" stroke="#03b020" stroke-width="2" stroke-linecap="round"
+                                     stroke-linejoin="round" className="lucide lucide-badge-check">
+                                    <path
+                                        d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"/>
+                                    <path d="m9 12 2 2 4-4"/>
+                                </svg>
+                            </div>
+
+                        </DialogDescription>
+                    </DialogHeader>
+                </DialogContent>
+            </Dialog>
+
             <div className={"p-5 px-5 md:px-10 grid grid-cols-1 gap-y-5 md:grid-cols-3 py-8"}
-                  //onSubmit={handleSubmit}
+                //onSubmit={handleSubmit}
             >
                 <div className="col-span-2 mx-20">
                     <h3 className={"font-bold text-3xl"}>Detalles del pedido</h3>
@@ -200,7 +232,7 @@ export default  function Checkout() {
 
                         <button
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                                onClick={()=>onApprove({paymentID: 123})}
+                                onClick={()=>onApprove({paymentID: idGenerator()})}
                         >
 
                             Pagar {/*<ArrowBigRight/>*/}
