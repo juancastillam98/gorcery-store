@@ -3,9 +3,9 @@ import {useState} from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
-import {registerNewUser} from "@/utils/GlobalAPi";
+import {registerNewUser} from "../../../utils/GlobalAPi";
 import logo from "../../../public/logo.png"
-import {Button} from "@/components/ui/button";
+import {Button} from "../../../components/ui/button";
 import {toast} from "sonner";
 
 export default function CreateAccount(){
