@@ -10,6 +10,9 @@ export default function ProductsProvider({children}){
     const [totalCartItems, setTotalCartItems]=useState(0);
     const [totalPrice, setTotalPrice]=useState(0)
 
+    const jwt=sessionStorage.getItem("jwt")
+    const userLogged=jwt?JSON.parse( sessionStorage.getItem("user")):"";
+
     const calculoSubtotal=()=>{
         let total=0;
         {cartListItem?.forEach(element =>{
@@ -26,6 +29,8 @@ export default function ProductsProvider({children}){
         <ProductsContext.Provider
         value={
             {
+                jwt,
+                userLogged,
                 updateCart,
                 setUpdateCart,
                 cartListItem,

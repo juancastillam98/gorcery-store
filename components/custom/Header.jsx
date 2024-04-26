@@ -1,7 +1,7 @@
 "use client"
 import {useEffect, useState} from "react";
 import {deleteCartItem, getCartItems, getCategories} from "@/utils/GlobalAPi";
-import {useProducts} from "@/hooks/useProducs";
+import {useProducts} from "@/hooks/useProducts";
 import Link from "next/link";
 import { useRouter } from 'next/navigation'
 import Image from 'next/image';
@@ -34,9 +34,8 @@ export const Header = () => {
 
     const [categories, setCategories]=useState([]);
     const router = useRouter()
-    const {updateCart, cartListItem, setCartListItem, setSubtotal, subtotal, setTotalCartItems, totalCartItems, calculoSubtotal} = useProducts();
-    const jwt=sessionStorage.getItem("jwt")
-    const userLogged=jwt?JSON.parse( sessionStorage.getItem("user")):"";
+    const {updateCart, cartListItem, setCartListItem, setSubtotal, subtotal, setTotalCartItems, totalCartItems, calculoSubtotal, jwt, userLogged} = useProducts();
+
 
     useEffect(()=> {
         listCategories();

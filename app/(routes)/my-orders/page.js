@@ -8,12 +8,13 @@ import {
     CollapsibleTrigger,
 } from "@/components/ui/collapsible"
 import {OrderItem} from "@/components/custom/OrderItem";
+import {useProducts} from "@/hooks/useProducts";
 
 
 export default function MyOrder() {
-    const jwt=sessionStorage.getItem("jwt")
-    const userLogged=jwt?JSON.parse( sessionStorage.getItem("user")):"";
+
     const [orderList, setOrderList]=useState([])
+    const {jwt, userLogged}=useProducts();
 
     const router = useRouter();
     useEffect(() => {

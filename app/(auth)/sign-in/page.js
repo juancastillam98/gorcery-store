@@ -7,14 +7,15 @@ import logo from "@/public/logo.png";
 import {Button} from "@/components/ui/button";
 import {signInUser} from "@/utils/GlobalAPi";
 import {toast} from "sonner";
+import {useProducts} from "@/hooks/useProducts";
 
 export default function CreateAccount(){
     const [email, setEmail]=useState();
     const [password, setPassword]=useState();
+    const {jwt}=useProducts();
     const router = useRouter()
 
     useEffect(() => {
-        const jwt=sessionStorage.getItem("jwt")
         if (jwt) {
             router.push("/")
         }

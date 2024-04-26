@@ -1,6 +1,6 @@
 import Image from "next/image";
 import {useEffect} from "react";
-import {useProducts} from "@/hooks/useProducs";
+import {useProducts} from "@/hooks/useProducts";
 import {Button} from "@/components/ui/button";
 import {LucideTrash} from "lucide-react";
 

@@ -1,7 +1,7 @@
 "use client"
 import { PayPalButtons} from "@paypal/react-paypal-js";
 import {addToOrder, getCartItems} from "@/utils/GlobalAPi";
-import {useProducts} from "@/hooks/useProducs";
+import {useProducts} from "@/hooks/useProducts";
 import {useEffect, useState} from "react";
 import {useRouter} from "next/navigation";
 import {toast} from "sonner";
@@ -14,13 +14,11 @@ import {
     DialogTrigger,
 } from "@/components/ui/dialog"
 
-import {Button} from "@/components/ui/button";
-import {ArrowBigRight} from "lucide-react";
 import {idGenerator} from "@/utils/functions";
 
 
 export default  function Checkout() {
-    const {totalCartItems, setTotalCartItems, cartListItem, setCartListItem, calculoSubtotal, subtotal, totalPrice}=useProducts();
+    const {totalCartItems, setTotalCartItems, cartListItem, setCartListItem, calculoSubtotal, subtotal, totalPrice, jwt, userLogged}=useProducts();
     const router = useRouter()
     const [showModal, setShowModal] = useState(false); // Estado para controlar la visibilidad del modal
 
@@ -50,8 +48,6 @@ export default  function Checkout() {
 /*    const { paypalScriptOptions, loadingStatus } = usePayPalScriptReducer();
     const [isPayPalReady, setPayPalReady] = useState(false);*/
 
-    const jwt=sessionStorage.getItem("jwt")
-    const userLogged=jwt?JSON.parse( sessionStorage.getItem("user")):"";
 
     useEffect(() => {
         if (!jwt){
@@ -64,11 +60,6 @@ export default  function Checkout() {
         calculoSubtotal()
     }, [cartListItem]);
 
-    const handleSubmit=(e)=> {
-        e.preventDefault();
-        console.log(userInfo)
-        /*onApprove({paymentId: "123"})*/
-    }
 
     const getProductsCart = async ()=> {
         try {

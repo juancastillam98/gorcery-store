@@ -6,16 +6,15 @@ import {ShoppingBasket} from "lucide-react";
 import {useState} from "react";
 import {toast} from "sonner";
 import {addToCart} from "@/utils/GlobalAPi";
-import {useProducts} from "@/hooks/useProducs";
+import {useProducts} from "@/hooks/useProducts";
 
 export const ProductItemDetail = ({product}) => {
 
     const [productTotalPrice, setProductTotalPrice] = useState(
         product.attributes.sellingPrice
     )
-    const {updateCart, setUpdateCart}=useProducts();
-    const jwt=sessionStorage.getItem("jwt");
-    const user=JSON.parse(sessionStorage.getItem("user"));
+    const {updateCart, setUpdateCart, jwt, userLogged}=useProducts();
+
     const router=useRouter();
     const [quantity, setQuantity] = useState(1)
     const addProductToCart = async ()=>{
@@ -28,8 +27,8 @@ export const ProductItemDetail = ({product}) => {
                 quantity,
                 amount: (quantity*productTotalPrice).toFixed(2),
                 products: product.id,
-                user_permissions_users: user.id,
-                userId: user.id
+                user_permissions_users: userLogged.id,
+                userId: userLogged.id
             }
         }
         try {
