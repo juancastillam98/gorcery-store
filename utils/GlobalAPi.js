@@ -31,6 +31,7 @@ export async function registerNewUser(username, email, password) {
             email: email,
             password: password,
         });
+        //Sacarlo de aqui
         sessionStorage.setItem("user", JSON.stringify(response.data.user))
         sessionStorage.setItem("jwt", response.data.jwt)
         toast("Usuario creado con éxito")
